@@ -1,20 +1,21 @@
 # Site settings
 title: "Bluellama Programmer"
 author: "Bluellama Programmer"
-description: "This is a blog about software, some mathematics, and the occasional philosophy. Not necessarily in that order."
+description: "This is a blog about software, some mathematics, and the occasional economics. Not necessarily in that order."
 keywords: "Software Engineering, Mathematics, Philosophy, Scala, Epistemology, Existentialism, Programming, Machine-Learning, Artificial Intelligence, Statistics, Probability, Puzzles"
-biography: "I am a Professor of Software Engineering at the <a href='http://www.fe.up.pt'>Faculty of Engineering</a>, University of Porto and Senior Researcher at <a href='https://www.inesctec.pt'>INESC TEC</a>. Here you can find my <a href='/assets/thesis.pdf'>PhD Thesis</a> and my <a href='/assets/cv.pdf'>Résumé</a>."
+biography: "I'm software engineer with passion for various technologies and sciences. I have a great desire to contribute to the development of society. By paying attention not only to engineering but also to science, economy, society problems and so on. I find it a great pleasure to solve various problems through software engineering. Also, the pleasure is the driving force of my life. "
 colophon: "© MMXIII — MMXVI by Hugo Sereno Ferreira.<br>Content available under <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>Creative Commons (BY-NC-SA)</a> unless otherwise noted.<br>This site is hosted at <a href='https://pages.github.com/'>Github Pages</a> and created with <a href='http://jekyllrb.com/'>Jekyll</a>."
 
 baseurl: ""
-url: "http://hugosereno.eu"
+url: "https://llamakoo.github.io/"
 
-twitter_username: ferreira_hugo
+# twitter_username: ferreira_hugo
 github_username: llamakoo
-linkedin_username: hugoserenoferreira
-facebook_username: hugo.sereno.ferreira
-google-analytics: UA-69060-5
+# linkedin_username: hugoserenoferreira
+# facebook_username: hugo.sereno.ferreira
+# google-analytics: UA-69060-5
 
+email: llamakoo9@gmail.com
 simple_search: http://google.com/search
 markdown: kramdown
 highlighter: rouge
