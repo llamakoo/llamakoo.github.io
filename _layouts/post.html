@@ -18,6 +18,7 @@ layout: default
         <article lang="en">
           {% if page.abstract %} <b>Abstract.</b> {{ page.abstract }}<br><br>{% endif %}
           {{ content }}
+          {% include disqus.html %}
         </article>
 	     </div>
      </div>
