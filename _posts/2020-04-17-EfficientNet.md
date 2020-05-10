@@ -4,7 +4,7 @@ title: EfficientNet
 date: 2020-04-17 20:00
 comments: true
 external-url:
-categories: Computer_vision
+categories: Deep_Learning
 ---
 > Title : EfficientNet, Rethinking Model Scaling for Convolutional Neural Network
 
@@ -79,7 +79,7 @@ categories: Computer_vision
 <p align="center"><img src="https://drive.google.com/uc?id=1bASUuxuC7pzMLZbFRLTYjZeLuhRn1dGn" width="70%" height="100%"></p>
 
 - 저자들은 3가지 파라미터를 원칙에 입각하여 변경할 수 있는, **Compound scaling method**를 제안한다.
-- $$\phi$$는 width, depth, resolution에 uniformly하게 곱해지는 계수이며, $$\alpha, \beta, \gamma$$는 samll grid search를 통해 얻은 상수들이다.
+- $$\phi$$는 width, depth, resolution에 uniformly하게 곱해지는 계수이며, $$\alpha, \beta, \gamma$$는 grid search를 통해 얻은 상수들이다.
 - 직관적으로, $$\phi$$는 모델 확장에 사용할 수 있는 리소스를 제어하는 변수이며, 가용메모리의 용량이 클 수록 값을 올릴 수 있다. $$\alpha, \beta, \gamma$$는 네트워크의 width, depth, resolution의 할당 비중을 나타내는 값이다.
 - Convolution 연산이 대부분이기 때문에, FLOPS 또한 convolution에 비례한다. 그리고 convolution 연산은 $$d, w^2, r^2$$에 비례한다. 따라서 FLOPS는 $$(\alpha\cdot\beta^2\cdot\gamma^2)^\phi$$에 비례하게 된다. 저자들은 ($$\alpha\cdot\beta^2\cdot\gamma^2$$)를 2에 근접한 값이 나오도록 설정하여, 총 FLOPS가 $$2^\phi$$가 되도록 하였다.
 
@@ -92,11 +92,25 @@ categories: Computer_vision
 > Since model scaling does not change layer operators $$\hat{\mathcal{F_i}}$$ in baseline network, having a good baseline network is also critical. We will evaluate our scaling method using existing ConvNets, but in order to better demonstrate the effectiveness of our scaling method, we have also developed a new mobile-size baseline, called EfficientNet.
 
 - 아무리 model scaling을 효과적으로 하더라도, baseline network가 좋지 않으면 성능 향상에 한계가 있다. 따라서 저자들은 EfficientNet-B0라는 새로운 mobile-size network를 설계하였다(Table1).
-- EfficientNet-B0는 accuracy와 FLOPS를 둘 다 최적화하여 설계되었고, 기존의 MnasNet과 비슷하나 약간 크다. 또한 최적화 과정에서 latency보다 FLOPS를 목표로 최적화하였는데, 이는 특정 하드웨어를 목표로 하는 것이 아니기 때문이다.
-- EfficientNet-B0를 baseline으로 compound scaling을 다음과 같이 적용한다.
 
-    1. - STEP1 : $$\phi=1$$로 고정후, 메모리 자원이 2배라고 가정할 때 최적의 $$\alpha, \beta, \gamma$$ 값을 수식 2, 3을 기반으로 small grid search로 찾는다.
-    2. - STEP2 : $$\alpha, \beta, \gamma$$을 고정하고, $$\phi=1$$을 변화시켜 scale up한다. 
+- EfficientNet-B0는 latency보다 FLOPS를 목표로 최적화하였는데, 이는 특정 하드웨어를 목표로 하는 것이 아니기 때문이다.
+- EfficientNet-B0를 baseline으로 compound scaling을 [NAS(Neural architecture search)](https://arxiv.org/abs/1611.01578)를 활용하여 다음과 같이 적용한다.
+
+    1. - **STEP1** : $$\phi=1$$로 고정후, 메모리 자원이 2배라고 가정할 때 최적의 $$\alpha, \beta, \gamma$$ 값을 수식 2, 3을 기반으로 grid search로 찾는다.
+    2. - **STEP2** : $$\alpha, \beta, \gamma$$을 고정하고, $$\phi=1$$을 변화시켜 scale up한다. 
+
+---
+### MBConv
+<p align="center">
+    <img src="https://drive.google.com/uc?id=1Z6GL7hoBsWzT8EiAAK2LZA-rPWGr4lcu" width="100%" height="100%">
+    <em><a href="https://towardsdatascience.com/mobilenetv2-inverted-residuals-and-linear-bottlenecks-8a4362f4ffd5">MBconv block (figure from [MobileNetV2: Inverted Residuals and Linear Bottlenecks]</a></em>
+</p>
+- MBConv는 MobileNet V2에서 제안된 block이며, efficientNet은 MBConv를 사용한 MNasNet과 비슷한 구조의 모델을 baseline(EfficientNet B0)으로 구축하였다.
+- MBConv의 특징은 크게 3가지로 구분할 수 있다. 자세한 설명은 링크 참조[(MobileNetV2: Inverted Residuals and Linear Bottlenecks)](https://towardsdatascience.com/mobilenetv2-inverted-residuals-and-linear-bottlenecks-8a4362f4ffd5) 
+
+    1. - **Depthwise convolution + Pointwise convolution** : 기본 convolution 연산을 2단계로 분리하여 연산량을 줄인다.
+    2. - **Inverse residuals** : Residual 블록은 channel을 압축하는 레이어와 확장하는 레이어로 구성된다. 기존 residual 방식에서는 채널이 확장된 레이어 끼리 연결이 되는 반면, MBconv는 적은 채널끼리 skip connection을 형성하게 되어 연산량이 감소된다.
+    3. - **Linear bottleneck** : Relu 활성화 함수로 인한 정보 손실을 방지하기 위해, 각 블록의 마지막 계층에서 선형 활성화 함수를 사용한다.
 
 <br>
 ## Experiments
@@ -112,4 +126,4 @@ categories: Computer_vision
 <br>
 ## Conclusion
 ---
-- 한줄 요약 : Model scaling에서 width, depth, resolution을 **적절한 비율**로 증가해야 accuracy와 efficiency에서 손실 없이 좋은 성능을 보인다.
+- Model을 scaling 할 때 width, depth, resolution을 **최적의 비율**로 변화시키면, accuracy와 efficiency 측면에서 좋은 성능의 모델을 생성할 수 있다.

@@ -58,7 +58,7 @@ layout: default
       <p>{% for posts in category %} {% for post in posts %}
             <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>{% if forloop.last == false %},&nbsp;&nbsp;{% endif %}
         {% endfor %} {% endfor %}  </p>
-      {% endfor %}
+	  {% endfor %}
     </div>
   </div>
 </div>

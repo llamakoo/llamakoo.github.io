@@ -5,6 +5,7 @@ date: 2020-04-20 20:00
 comments: true
 external-url:
 categories: Computer_vision
+tags: [detection]
 ---
 > Title : EfficientNet, Scalable and Efficient Object Detection
 
