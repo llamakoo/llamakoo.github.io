@@ -94,7 +94,7 @@ categories: Deep_Learning
 - 아무리 model scaling을 효과적으로 하더라도, baseline network가 좋지 않으면 성능 향상에 한계가 있다. 따라서 저자들은 EfficientNet-B0라는 새로운 mobile-size network를 설계하였다(Table1).
 
 - EfficientNet-B0는 latency보다 FLOPS를 목표로 최적화하였는데, 이는 특정 하드웨어를 목표로 하는 것이 아니기 때문이다.
-- EfficientNet-B0를 baseline으로 compound scaling을 [NAS(Neural architecture search)](https://arxiv.org/abs/1611.01578)를 활용하여 다음과 같이 적용한다.
+- [NAS(Neural architecture search)](https://arxiv.org/abs/1611.01578)를 활용하여 구현한 EfficientNet-B0를 baseline으로 compound scaling을 다음과 같이 수행한다.
 
     1. - **STEP1** : $$\phi=1$$로 고정후, 메모리 자원이 2배라고 가정할 때 최적의 $$\alpha, \beta, \gamma$$ 값을 수식 2, 3을 기반으로 grid search로 찾는다.
     2. - **STEP2** : $$\alpha, \beta, \gamma$$을 고정하고, $$\phi=1$$을 변화시켜 scale up한다. 
