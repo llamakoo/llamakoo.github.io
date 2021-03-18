@@ -1,4 +1,4 @@
-I"�3<blockquote>
+I"�/<blockquote>
   <p>Title : EfficientNet, Scalable and Efficient Object Detection</p>
 </blockquote>
 
@@ -42,8 +42,8 @@
 
 <h3 id="challenge">Challenge</h3>
 <ul>
-  <li>feature fusion에서 많이 사용되는 FPN은 다양한 객체 크기를 잡는데 효과적이다. FPN에서는 feature fusion을 모두 동일한 비중으로 가져가는데, 실제로는 feature들이 다른 해상도를 가지기 때문에 출력에 동등하게 기여하지 않는다. <span style="color:#DF8B00"><script type="math/tex">\rightarrow</script> BiFPN</span></li>
-  <li>Backbone 네트워크와 box/class prediction 네트워크를 적절하게 scaling해야 효율적이면서 높은 성능을 이끌어 낼 수 있다.  <span style="color:#DF8B00"><script type="math/tex">\rightarrow</script> compound scaling method</span></li>
+  <li>feature fusion에서 많이 사용되는 FPN은 다양한 객체 크기를 잡는데 효과적이다. FPN에서는 feature fusion을 모두 동일한 비중으로 가져가는데, 실제로는 feature들이 다른 해상도를 가지기 때문에 출력에 동등하게 기여하지 않는다. <span style="color:#DF8B00">\(\rightarrow\) BiFPN</span></li>
+  <li>Backbone 네트워크와 box/class prediction 네트워크를 적절하게 scaling해야 효율적이면서 높은 성능을 이끌어 낼 수 있다.  <span style="color:#DF8B00">\(\rightarrow\) compound scaling method</span></li>
 </ul>
 
 <p><br /></p>
@@ -54,9 +54,9 @@
 <h3 id="problem-formulation">Problem Formulation</h3>
 <ul>
   <li>Object detection은 Classification과 다르게 객체의 크기가 다양하며, 이를 모두 탐지해야 한다는 문제가 있다. 따라서 다양한 해상도의 feature의 정보를 사용해야하며 이들을 효과적으로 fusion하는 것(multi-scale feature fusion)이 중요하다.</li>
-  <li>Multi-scale features를 <script type="math/tex">\vec{P^{in}}=(\vec{P^{in}_{l_1}},\vec{P^{in}_{l_2}},\dots)</script>로 정의할 때, <script type="math/tex">\vec{P^{in}_{l_i}}</script>는 level <script type="math/tex">l_i</script>에서의 feature이다.</li>
-  <li><span style="background-color:#BFFF00">목표는 입력 feature를 효과적으로 융합하는 <script type="math/tex">f</script>를 찾는 것이다.</span> <script type="math/tex">\vec{P^{out}}=f(\vec{P^{in}})</script></li>
-  <li><script type="math/tex">\vec{P^{in}_{l_i}}</script>의 해상도는 입력 영상 해상도의 <script type="math/tex">1/2^i</script>의 배이다. 예를들면, 입력 영상 해상도가 <script type="math/tex">640\times640</script>인 경우, level 3의 feature는 <script type="math/tex">80\times80 (=640/2^3)</script>의 해상도를 갖는다.</li>
+  <li>Multi-scale features를 \(\vec{P^{in}}=(\vec{P^{in}_{l_1}},\vec{P^{in}_{l_2}},\dots)\)로 정의할 때, \(\vec{P^{in}_{l_i}}\)는 level \(l_i\)에서의 feature이다.</li>
+  <li><span style="background-color:#BFFF00">목표는 입력 feature를 효과적으로 융합하는 \(f\)를 찾는 것이다.</span> \(\vec{P^{out}}=f(\vec{P^{in}})\)</li>
+  <li>\(\vec{P^{in}_{l_i}}\)의 해상도는 입력 영상 해상도의 \(1/2^i\)의 배이다. 예를들면, 입력 영상 해상도가 \(640\times640\)인 경우, level 3의 feature는 \(80\times80 (=640/2^3)\)의 해상도를 갖는다.</li>
 </ul>
 
 <h3 id="cross-scale-connections">Cross-Scale Connections</h3>
@@ -73,13 +73,13 @@
 </ul>
 
 <ol>
-  <li>feature fusion이 일어나지 않는 노드를 제거 <span style="color:#DF6C00"><script type="math/tex">\rightarrow</script> 영향이 적은 노드를 제거하여 연산량 개선</span></li>
-  <li>동일 레벨에서 입력 노드와 출력 노드를 연결하는 extra edge를 추가 <span style="color:#DF6C00"><script type="math/tex">\rightarrow</script> 추가비용을 치르지 않고 더 많은 feature를 fusion하는 효과</span>
+  <li>feature fusion이 일어나지 않는 노드를 제거 <span style="color:#DF6C00">\(\rightarrow\) 영향이 적은 노드를 제거하여 연산량 개선</span></li>
+  <li>동일 레벨에서 입력 노드와 출력 노드를 연결하는 extra edge를 추가 <span style="color:#DF6C00">\(\rightarrow\) 추가비용을 치르지 않고 더 많은 feature를 fusion하는 효과</span>
     <blockquote>
       <p>Third, unlike PANet that only has one top-down and one bottom-up path, we treat each bidirectional (top-down &amp; bottom-up) path as one feature network layer, and repeat the same layer multiple times to enable more high-level feature fusion.</p>
     </blockquote>
   </li>
-  <li><span style="background-color:#BFFF00">더 많은 상위 레벨의 feature fusion을 위해, 레이어를 반복하여 추가</span> <span style="color:#DF8B00"><script type="math/tex">\rightarrow</script> 한번의 top-down, bottom-up 연결만 구현된 PANet과 다르게  bidirectional path(top-down &amp; bottom-up)를 하나의 feature network layer로 보아, 여러번 반복하여 추가함으로서 더 많은 feature fusion이 가능하게 한다.</span></li>
+  <li><span style="background-color:#BFFF00">더 많은 상위 레벨의 feature fusion을 위해, 레이어를 반복하여 추가</span> <span style="color:#DF8B00">\(\rightarrow\) 한번의 top-down, bottom-up 연결만 구현된 PANet과 다르게  bidirectional path(top-down &amp; bottom-up)를 하나의 feature network layer로 보아, 여러번 반복하여 추가함으로서 더 많은 feature fusion이 가능하게 한다.</span></li>
 </ol>
 
 <h3 id="weighted-feature-fusion">Weighted Feature Fusion</h3>
@@ -94,39 +94,39 @@
     <dl>
       <dt>Unbounded Fusion</dt>
       <dd>
-        <script type="math/tex; mode=display">O=\Sigma_iw_i\cdot I_i</script>
+\[O=\Sigma_iw_i\cdot I_i\]
       </dd>
-      <dd><script type="math/tex">\rightarrow</script> <script type="math/tex">w_i</script> : learnable weight, <script type="math/tex">I_i</script> : feature map</dd>
-      <dd><script type="math/tex">\rightarrow</script> weight가 unbounded 되어, 학습시 불안정하기 때문에 정규화가 필요하다.</dd>
+      <dd>\(\rightarrow\) \(w_i\) : learnable weight, \(I_i\) : feature map</dd>
+      <dd>\(\rightarrow\) weight가 unbounded 되어, 학습시 불안정하기 때문에 정규화가 필요하다.</dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt>Softmax-based fusion</dt>
       <dd>
-        <script type="math/tex; mode=display">O=\Sigma_i \frac{e^{w_i}}{\Sigma_je^{w_j}} \cdot I_i</script>
+\[O=\Sigma_i \frac{e^{w_i}}{\Sigma_je^{w_j}} \cdot I_i\]
       </dd>
-      <dd><script type="math/tex">\rightarrow</script> 각 weight에 softmax를 취하여 정규화한다.</dd>
-      <dd><script type="math/tex">\rightarrow</script> 왜 softmax 인가? softmax는 <script type="math/tex">j</script>개의 값이 존재하면, 각 값의 편차를 확대시켜 (큰 값은 더 크게, 작은 값은 더 작게) [0,1] 범위의 값들로 정규화한다.</dd>
-      <dd><script type="math/tex">\rightarrow</script> 하지만 단순히 Softmax를 하게 되면, GPU에서 연산 속도가 느려지게 된다. 따라서 연산이 빠른 방법을 고안하게 되었다.</dd>
+      <dd>\(\rightarrow\) 각 weight에 softmax를 취하여 정규화한다.</dd>
+      <dd>\(\rightarrow\) 왜 softmax 인가? softmax는 \(j\)개의 값이 존재하면, 각 값의 편차를 확대시켜 (큰 값은 더 크게, 작은 값은 더 작게) [0,1] 범위의 값들로 정규화한다.</dd>
+      <dd>\(\rightarrow\) 하지만 단순히 Softmax를 하게 되면, GPU에서 연산 속도가 느려지게 된다. 따라서 연산이 빠른 방법을 고안하게 되었다.</dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong>Fast normalized fusion</strong></dt>
       <dd>
-        <script type="math/tex; mode=display">O=\Sigma_i \frac{e^{w_i}}{\epsilon + \Sigma_je^{w_j}} \cdot I_i</script>
+\[O=\Sigma_i \frac{e^{w_i}}{\epsilon + \Sigma_je^{w_j}} \cdot I_i\]
       </dd>
-      <dd><script type="math/tex">\rightarrow</script> <script type="math/tex">w_i</script>에 Relu를 취해 양수가 되도록 한다. <script type="math/tex">\epsilon</script>은 0.0001과 같은 작은 수치로 정한다.</dd>
-      <dd><script type="math/tex">\rightarrow</script> 정규화된 weight는 0에서 1사이 값을 가지지만, softmax 연산을 안하므로 더 효율적이다.</dd>
+      <dd>\(\rightarrow\) \(w_i\)에 Relu를 취해 양수가 되도록 한다. \(\epsilon\)은 0.0001과 같은 작은 수치로 정한다.</dd>
+      <dd>\(\rightarrow\) 정규화된 weight는 0에서 1사이 값을 가지지만, softmax 연산을 안하므로 더 효율적이다.</dd>
       <dd>
         <p align="center"><img src="https://drive.google.com/uc?id=1PWABfKbTtz-Le2FBiJ-yjlQwKVKqXKB4" width="100%" height="100%" /></p>
       </dd>
-      <dd><script type="math/tex">\rightarrow</script> 실험 결과에서도 Fast normalized fusion의 학습 방식이, Softmax를 적용할 때와 비슷한 학습 양상을 보인다. 또한 연산 속도도 1.3배 정도 빨라지게된다.</dd>
+      <dd>\(\rightarrow\) 실험 결과에서도 Fast normalized fusion의 학습 방식이, Softmax를 적용할 때와 비슷한 학습 양상을 보인다. 또한 연산 속도도 1.3배 정도 빨라지게된다.</dd>
       <dd>
         <p align="center"><img src="https://drive.google.com/uc?id=1TS2XsSWBRJpMqOD0gTiDYjvjl15Z3-rK" width="100%" height="100%" /></p>
       </dd>
-      <dd><script type="math/tex">\rightarrow</script> BiFPN을 도식화 하면 위 그림과 같다. node는 operation으로 edge는 feature map으로 볼 수 있다. 실제로 저자들은 더 높은 효율적인 구조를 위해 depthwise separable convolution을 사용하였으며, conv 연산마다 batch normalization을 적용하였다.</dd>
+      <dd>\(\rightarrow\) BiFPN을 도식화 하면 위 그림과 같다. node는 operation으로 edge는 feature map으로 볼 수 있다. 실제로 저자들은 더 높은 효율적인 구조를 위해 depthwise separable convolution을 사용하였으며, conv 연산마다 batch normalization을 적용하였다.</dd>
     </dl>
   </li>
 </ol>
@@ -143,7 +143,7 @@
   <li>EffiicentDet은 마찬가지로 EfficientNet의 <strong>Compound Scaling</strong> 기법(<a href="https://llamakoo.github.io/blog/2020/04/17/EfficientNet/">EfficientNet 논문 리뷰 참고</a>)을 사용하여 model scaling을 통해 다양한 크기의 모델을 구현하였다.</li>
   <li>Network의 width, depth, input resolution을 scaling하는 것은 EfficientNet과 동일하지만, scaling 해야 할 네트워크(backbone network, BiFPN network, class/box network)가 많다.</li>
   <li>따라서 네트워크들 전부에 대해서 grid search로 하나씩 찾는 것은 매우 어려운 작업이기 때문에 heuristic한 방법을 사용하였다.</li>
-  <li>EfficientNet의 모델(B0 ~ B6)과 동일하게 구성하며,  BiFPN 네트워크의 width, depth는 각각 <script type="math/tex">W_{bifpn}=64\cdot(1.35^\phi)</script>, <script type="math/tex">D_{bifpn}=3+\phi</script> 식에 맞게 설정한다. Box/class prediction 네트워크는 <script type="math/tex">D_{box}=D_{class}=3+\lfloor\phi+3\rfloor</script> 식에 맞게 설정한다. 마지막으로 input resolution은 <script type="math/tex">R_{input}=512+\phi\cdot128</script>에 맞춘다.</li>
+  <li>EfficientNet의 모델(B0 ~ B6)과 동일하게 구성하며,  BiFPN 네트워크의 width, depth는 각각 \(W_{bifpn}=64\cdot(1.35^\phi)\), \(D_{bifpn}=3+\phi\) 식에 맞게 설정한다. Box/class prediction 네트워크는 \(D_{box}=D_{class}=3+\lfloor\phi+3\rfloor\) 식에 맞게 설정한다. 마지막으로 input resolution은 \(R_{input}=512+\phi\cdot128\)에 맞춘다.</li>
 </ul>
 <p align="center"><img src="https://drive.google.com/uc?id=1TjXFYhYXStd_gUzp_JNSwb-OwjQz9NQS" width="80%" height="100%" /></p>
 <ul>

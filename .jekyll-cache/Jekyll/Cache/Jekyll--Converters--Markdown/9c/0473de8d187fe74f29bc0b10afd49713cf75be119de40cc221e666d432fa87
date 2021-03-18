@@ -1,4 +1,4 @@
-I"�;<blockquote>
+I"�8<blockquote>
   <p>Title : EfficientNet, Rethinking Model Scaling for Convolutional Neural Network</p>
 </blockquote>
 
@@ -58,18 +58,18 @@
 <hr />
 <h3 id="problem-formulation">Problem Formulation</h3>
 <ul>
-  <li>ConvNet Layer <script type="math/tex">i</script>의 함수는 <script type="math/tex">\mathrm{Y}_i = \mathcal{F}_i(\mathrm{X}_i)</script>로 정의된다. (<script type="math/tex">\mathrm{Y}_i</script> : output tensor, <script type="math/tex">\mathcal{F}_i</script> : operator, <script type="math/tex">\mathrm{X}_i</script> : input tensor)</li>
-  <li>ConvNet <script type="math/tex">\mathcal{N}</script>은 layer들 간의 결합으로 표현할 수 있다. (<script type="math/tex">\mathcal{N}=\mathcal{F_k}\odot\ldots\odot\mathcal{F_2}\odot\mathcal{F_1}(\mathrm{X_1})=\bigodot_{j=1 \ldots k}\mathcal{F_j}(\mathrm{X_1})</script>)</li>
+  <li>ConvNet Layer \(i\)의 함수는 \(\mathrm{Y}_i = \mathcal{F}_i(\mathrm{X}_i)\)로 정의된다. (\(\mathrm{Y}_i\) : output tensor, \(\mathcal{F}_i\) : operator, \(\mathrm{X}_i\) : input tensor)</li>
+  <li>ConvNet \(\mathcal{N}\)은 layer들 간의 결합으로 표현할 수 있다. (\(\mathcal{N}=\mathcal{F_k}\odot\ldots\odot\mathcal{F_2}\odot\mathcal{F_1}(\mathrm{X_1})=\bigodot_{j=1 \ldots k}\mathcal{F_j}(\mathrm{X_1})\))</li>
   <li>ConvNet은 여러개의 stage로 나뉘고, 각 stage의 layer들은 일반적으로 동일한 구조를 가진다.</li>
-  <li>기존의 방법들은 최적 레이어 구조 <script type="math/tex">\mathcal{F_i}</script>를 찾으려 하였다. 하지만 <script type="math/tex">\mathcal{F_i}</script>를 고정하면 design space가 줄어들기 때문에 model scaling이 쉬워진다.</li>
-  <li>그럼에도 불구하고 <script type="math/tex">\mathrm{L_i}, \mathrm{C_i}, \mathrm{H_i}, \mathrm{W_i}</script>를 각각 layer마다 조절하여 최적의 값을 찾는 것은 어려운 문제이다. 따라서 모든 layer를 같은 비율로 줄이는 것을 제약조건으로 정한다.</li>
+  <li>기존의 방법들은 최적 레이어 구조 \(\mathcal{F_i}\)를 찾으려 하였다. 하지만 \(\mathcal{F_i}\)를 고정하면 design space가 줄어들기 때문에 model scaling이 쉬워진다.</li>
+  <li>그럼에도 불구하고 \(\mathrm{L_i}, \mathrm{C_i}, \mathrm{H_i}, \mathrm{W_i}\)를 각각 layer마다 조절하여 최적의 값을 찾는 것은 어려운 문제이다. 따라서 모든 layer를 같은 비율로 줄이는 것을 제약조건으로 정한다.</li>
 </ul>
 
 <p align="center"><img src="https://drive.google.com/uc?id=1qfZoJYrAqOol_1bjyton796H7ORx2T4X" width="75%" height="100%" /></p>
 <p><br /></p>
 <ul>
   <li>Model scaling을 위의 식과 같은 <span style="background-color:#BFFF00"> 메모리 공간에 대한 제약조건이 주어질 때, model accuracy를 최대화 하는 최적화 문제</span>로 바꾸어 풀고자 한다.</li>
-  <li><script type="math/tex">w,d,r</script>은 각각 네트워크의 width, depth, resolution에 곱해지는 coefficients이며, <script type="math/tex">\hat{\mathcal{F_i}},\hat{\mathrm{L_i}},\hat{\mathrm{H_i}},\hat{\mathrm{W_i}},\hat{\mathrm{C_i}}</script>는 각각 baseline 네트워크의 predefined parameter이다.</li>
+  <li>\(w,d,r\)은 각각 네트워크의 width, depth, resolution에 곱해지는 coefficients이며, \(\hat{\mathcal{F_i}},\hat{\mathrm{L_i}},\hat{\mathrm{H_i}},\hat{\mathrm{W_i}},\hat{\mathrm{C_i}}\)는 각각 baseline 네트워크의 predefined parameter이다.</li>
 </ul>
 
 <h3 id="scaling-dimensions">Scaling Dimensions</h3>
@@ -79,7 +79,7 @@
 
 <ul>
   <li>
-    <p>위 최적화 문제에서 가장 큰 어려움은 각각의 <script type="math/tex">w,d,r</script>이 의존적인 값이며 매번 다른 메모리 조건에 따라 값들이 변한다는 것이다. 이런 이유로 인해 기존의 방법들은 하나의 값만 조절하는 기법을 사용했다. 3가지의 파라미터를 조정하면 다음과 같은 영향을 미친다.</p>
+    <p>위 최적화 문제에서 가장 큰 어려움은 각각의 \(w,d,r\)이 의존적인 값이며 매번 다른 메모리 조건에 따라 값들이 변한다는 것이다. 이런 이유로 인해 기존의 방법들은 하나의 값만 조절하는 기법을 사용했다. 3가지의 파라미터를 조정하면 다음과 같은 영향을 미친다.</p>
 
     <ol>
       <li>
@@ -124,9 +124,9 @@
 
 <ul>
   <li>저자들은 3가지 파라미터를 원칙에 입각하여 변경할 수 있는, <strong>Compound scaling method</strong>를 제안한다.</li>
-  <li><script type="math/tex">\phi</script>는 width, depth, resolution에 uniformly하게 곱해지는 계수이며, <script type="math/tex">\alpha, \beta, \gamma</script>는 grid search를 통해 얻은 상수들이다.</li>
-  <li>직관적으로, <script type="math/tex">\phi</script>는 모델 확장에 사용할 수 있는 리소스를 제어하는 변수이며, 가용메모리의 용량이 클 수록 값을 올릴 수 있다. <script type="math/tex">\alpha, \beta, \gamma</script>는 네트워크의 width, depth, resolution의 할당 비중을 나타내는 값이다.</li>
-  <li>Convolution 연산이 대부분이기 때문에, FLOPS 또한 convolution에 비례한다. 그리고 convolution 연산은 <script type="math/tex">d, w^2, r^2</script>에 비례한다. 따라서 FLOPS는 <script type="math/tex">(\alpha\cdot\beta^2\cdot\gamma^2)^\phi</script>에 비례하게 된다. 저자들은 (<script type="math/tex">\alpha\cdot\beta^2\cdot\gamma^2</script>)를 2에 근접한 값이 나오도록 설정하여, 총 FLOPS가 <script type="math/tex">2^\phi</script>가 되도록 하였다.</li>
+  <li>\(\phi\)는 width, depth, resolution에 uniformly하게 곱해지는 계수이며, \(\alpha, \beta, \gamma\)는 grid search를 통해 얻은 상수들이다.</li>
+  <li>직관적으로, \(\phi\)는 모델 확장에 사용할 수 있는 리소스를 제어하는 변수이며, 가용메모리의 용량이 클 수록 값을 올릴 수 있다. \(\alpha, \beta, \gamma\)는 네트워크의 width, depth, resolution의 할당 비중을 나타내는 값이다.</li>
+  <li>Convolution 연산이 대부분이기 때문에, FLOPS 또한 convolution에 비례한다. 그리고 convolution 연산은 \(d, w^2, r^2\)에 비례한다. 따라서 FLOPS는 \((\alpha\cdot\beta^2\cdot\gamma^2)^\phi\)에 비례하게 된다. 저자들은 (\(\alpha\cdot\beta^2\cdot\gamma^2\))를 2에 근접한 값이 나오도록 설정하여, 총 FLOPS가 \(2^\phi\)가 되도록 하였다.</li>
 </ul>
 
 <p><br /></p>
@@ -136,7 +136,7 @@
 <p align="center"><img src="https://drive.google.com/uc?id=1JW0aOK1Y1T7J-Oe863kda2k9eoPJF-Fr" width="70%" height="100%" /></p>
 
 <blockquote>
-  <p>Since model scaling does not change layer operators <script type="math/tex">\hat{\mathcal{F_i}}</script> in baseline network, having a good baseline network is also critical. We will evaluate our scaling method using existing ConvNets, but in order to better demonstrate the effectiveness of our scaling method, we have also developed a new mobile-size baseline, called EfficientNet.</p>
+  <p>Since model scaling does not change layer operators \(\hat{\mathcal{F_i}}\) in baseline network, having a good baseline network is also critical. We will evaluate our scaling method using existing ConvNets, but in order to better demonstrate the effectiveness of our scaling method, we have also developed a new mobile-size baseline, called EfficientNet.</p>
 </blockquote>
 
 <ul>
@@ -150,12 +150,12 @@
     <ol>
       <li>
         <ul>
-          <li><strong>STEP1</strong> : <script type="math/tex">\phi=1</script>로 고정후, 메모리 자원이 2배라고 가정할 때 최적의 <script type="math/tex">\alpha, \beta, \gamma</script> 값을 수식 2, 3을 기반으로 grid search로 찾는다.</li>
+          <li><strong>STEP1</strong> : \(\phi=1\)로 고정후, 메모리 자원이 2배라고 가정할 때 최적의 \(\alpha, \beta, \gamma\) 값을 수식 2, 3을 기반으로 grid search로 찾는다.</li>
         </ul>
       </li>
       <li>
         <ul>
-          <li><strong>STEP2</strong> : <script type="math/tex">\alpha, \beta, \gamma</script>을 고정하고, <script type="math/tex">\phi=1</script>을 변화시켜 scale up한다.</li>
+          <li><strong>STEP2</strong> : \(\alpha, \beta, \gamma\)을 고정하고, \(\phi=1\)을 변화시켜 scale up한다.</li>
         </ul>
       </li>
     </ol>

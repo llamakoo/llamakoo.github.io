@@ -1,0 +1,65 @@
+I"$
+
+
+
+
+
+<article id="post-example-computer_vision-EfficientDet" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/example/computer_vision/2020-04-20-EfficientDet/" class="flip-title">
+        EfficientDet
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2020-04-20T20:00:00-05:00">20 Apr 2020</time> in <span>Example</span> / <span>Computer_vision</span> on <span>Detection</span>
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 2021-03-18">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2021-03-18T08:34:26-05:00">2021-03-18</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  <div class="hr pb0"></div>
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>Title : EfficientNet, Scalable and Efficient Object Detection</p>
+</blockquote>
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/example/computer_vision/2020-04-20-EfficientDet/">EfficientDet</a>
+
+      </p>
+    </footer>
+  
+</article>
+:ET

@@ -1,0 +1,65 @@
+I"
+
+
+
+
+
+<article id="post-example-deep_learning-EfficientNet" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/example/deep_learning/2020-04-17-EfficientNet/" class="flip-title">
+        EfficientNet
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2020-04-17T20:00:00-05:00">17 Apr 2020</time> in <span>Example</span> / <span>Deep_learning</span> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 2021-03-18">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2021-03-18T08:34:26-05:00">2021-03-18</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  <div class="hr pb0"></div>
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>Title : EfficientNet, Rethinking Model Scaling for Convolutional Neural Network</p>
+</blockquote>
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/example/deep_learning/2020-04-17-EfficientNet/">EfficientNet</a>
+
+      </p>
+    </footer>
+  
+</article>
+:ET
